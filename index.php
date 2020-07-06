@@ -1,16 +1,33 @@
 <?php
 $lastName = 'Roldan Rodriguez';
 $name = "Felipe Santiago $lastName";
+$limitMonths = 12;
 $jobs = [
   [
     'title' => 'PHP Developer',
-    'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil'
+    'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil',
+    'visible' => true,
+    'months' => 6
   ],
   [
-    'title' => 'Python Dev'
+    'title' => 'Python Dev',
+    'visible' => false,
+    'months' => 4
   ],
   [
-    'title' => 'Devops'
+    'title' => 'Devops',
+    'visible' => false,
+    'months' => 5
+  ],
+  [
+    'title' => 'Node Dev',
+    'visible' => true,
+    'months' => 2
+  ],
+  [
+    'title' => 'Frontend Dev',
+    'visible' => true,
+    'months' => 3
   ]
 ];
 
@@ -27,7 +44,7 @@ if($var1 > 2){
 //----Ejercicios arreglos
 
 //Ejercicio 1
-$arreglo = [
+/*$arreglo = [
 
   'keyStr1' => 'lado',
   0 => 'ledo',
@@ -66,7 +83,7 @@ foreach(array_reverse($arreglo) as $clave => $valor){
 }
 echo $cadena;
 echo '<br>';
-echo '¡Qué trabajo me ha costado!';
+echo '¡Qué trabajo me ha costado!';*/
 
 ?>
 
@@ -119,10 +136,22 @@ echo '¡Qué trabajo me ha costado!';
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
             <?php
+            $totalMonths = 0;
             for($idx = 0 ; $idx < count($jobs) ; $idx++ ) {
+              $totalMonths += $jobs[$idx]['months'];
+
+              if($totalMonths > $limitMonths){
+                break;
+              }
+
+              if($jobs[$idx]['visible'] == false){
+                continue;
+              }
+
               echo '<li class="work-position">';
               echo '<h5>' . $jobs[$idx]['title'] . '</h5>';
               echo '<p>' . $jobs[$idx]['description'] . '</p>';
+              echo '<p>' . $totalMonths . '</p>';
               echo '<strong>Achievements:</strong>';
               echo '<ul>';
               echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
