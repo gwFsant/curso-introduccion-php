@@ -22,6 +22,52 @@ if($var1 > 2){
 }*/
 
 //var_dump($jobs);
+
+
+//----Ejercicios arreglos
+
+//Ejercicio 1
+$arreglo = [
+
+  'keyStr1' => 'lado',
+  0 => 'ledo',
+
+  'keyStr2' => 'lido',
+  1 => 'lodo',
+  2 => 'ludo'
+
+];
+
+$cadena = '';
+$idx = 0 ;
+foreach($arreglo as $clave => $valor){
+   if($idx < count($arreglo)-1){
+     $cadena = $cadena . $valor . ',';
+   }else{
+     $cadena = $cadena . $valor;
+   }
+   $idx++;
+}
+echo $cadena;
+
+echo "<br>";
+echo "decirlo al reves lo dudo";
+echo "<br>";
+
+$cadena = '';
+$idx = 0 ;
+foreach(array_reverse($arreglo) as $clave => $valor){
+   if($idx < count($arreglo)-1){
+     $cadena = $cadena . $valor . ',';
+   }else{
+     $cadena = $cadena . $valor;
+   }
+   $idx++;
+}
+echo $cadena;
+echo '<br>';
+echo '¡Qué trabajo me ha costado!';
+
 ?>
 
 
