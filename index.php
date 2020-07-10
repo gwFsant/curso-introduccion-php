@@ -117,11 +117,9 @@ echo '¡Qué trabajo me ha costado!';*/
 
               if($totalMonths > $limitMonths){
                 break;
-              }
+              }              
 
-              
-
-              printJob($jobs[$idx]);
+              printElement($jobs[$idx]);
             }
             ?>
           </ul>
@@ -130,6 +128,14 @@ echo '¡Qué trabajo me ha costado!';*/
             <h3 class="border-bottom-gray">Projects</h3>
             <div class="project">
                 <h5>Project X</h5>
+                <ul>
+                  <?php                  
+                  for($idx = 0 ; $idx < count($projects) ; $idx++ ) {                                             
+
+                    printElement($projects[$idx]);
+                  }
+                  ?>
+                </ul>
                 <div class="row">
                     <div class="col-3">
                         <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">

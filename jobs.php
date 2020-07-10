@@ -1,44 +1,7 @@
 <?php
 
-class Job{
-  private $title;
-  public $description;
-  public $visible=true;
-  public $months;
-
-  public function __construct($title, $description){
-    $this->title = $title;
-    $this->description = $description;
-
-  }
-
-  public function setTitle($t){
-    if($t == ''){
-      $this->title = 'N/A';
-    }
-    $this->title=$t;
-  }
-
-  public function getTitle(){
-    return $this->title;
-  }
-
-  public function getDurationAsString(){
-
-    $years = floor($this->months/12);
-    $extraMonths = $this->months % 12;
-  
-    if ($years == 0){
-      return "$extraMonths months";
-    }elseif ($extraMonths == 0){
-      return "$years years";
-    }else{
-      return "$years years $extraMonths months";
-    }
-    
-  }
-
-}
+require 'app/Models/Job.php';
+require 'app/Models/Project.php';
 
 $job1 = new Job('PHP Developer','This is an awesome job!!!');
 $job1->months = 16;
@@ -49,40 +12,19 @@ $job2->months = 5;
 $job3 = new Job('Devops','This is an awesome job!!!');
 $job3->months = 24;
 
+$project1 = new Project('Project 1','Description 1');
+
 $jobs = [
   $job1,
   $job2,
-  $job3
-
-    /*[
-      'title' => 'PHP Developer',
-      'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil',
-      'visible' => true,
-      'months' => 16
-    ],
-    [
-      'title' => 'Python Dev',
-      'visible' => true,
-      'months' => 14
-    ],
-    [
-      'title' => 'Devops',
-      'visible' => true,
-      'months' => 5
-    ],
-    [
-      'title' => 'Node Dev',
-      'visible' => true,
-      'months' => 24
-    ],
-    [
-      'title' => 'Frontend Dev',
-      'visible' => true,
-      'months' => 3
-    ]*/
+  $job3   
   ];
+
+$projects = [
+  $project1
+]; 
   
-  function printJob($job){
+  function printElement($job){
   
     if($job->visible == false){
       return;
