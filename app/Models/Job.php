@@ -4,13 +4,19 @@ namespace App\Models;
 
 //require_once 'BaseElement.php';
 
-class Job extends BaseElement {
+use Illuminate\Database\Eloquent\Model;
 
-    public function __construct($title, $description) {
+
+class Job extends Model {
+//class Job extends BaseElement {
+
+    /*public function __construct($title, $description) {
         $newTitle = 'Job: ' . $title;
         //parent::__construct($newTitle, $description);
         $this->title = $newTitle;
-    }
+    }*/
+
+    protected $table = 'jobs';
 
     public function getDurationAsString(){
   
