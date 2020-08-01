@@ -3,23 +3,42 @@
 namespace App\Controllers;
 
 use App\Models\Job;
+use Respect\Validation\Validator as v;
+use Respect\Validation\Exceptions\NestedValidationException;
 
 class JobsController extends BaseController{
     public function getAddJobAction($request){
-        //var_dump((string)$request->getBody());
-        //var_dump();
         
+        $responseMessage = null;       
+
         if ($request->getMethod() == 'POST'){
+            
             $postData = $request->getParsedBody();
-            $job = new Job();
-            $job->title = $postData['title'];
-            $job->description = $postData['description'];
-            $job->save();
-        
+            $jobValidator = v::key('title', v::stringType()->notEmpty())
+                ->key('description',v::stringType()->notEmpty());
+            
+            try{                
+                $jobValidator->assert($postData);                
+                $postData = $request->getParsedBody();
+                $job = new Job();
+                $job->title = $postData['title'];
+                $job->description = $postData['description'];
+                $job->save();
+
+                $responseMessage = 'Saved';
+
+            } catch (NestedValidationException $e) {
+                $responseMessage = $e->getMessage();
+            }
+                        
         }
 
         //include '../views/addJob.php';
-        return $this->renderHTML('addJob.twig');
+        //return $this->renderHTML('addJob.twig');
+
+        return $this->renderHTML('addJob.twig',[
+            'responseMessage' => $responseMessage
+        ]);
     }
 }
 
